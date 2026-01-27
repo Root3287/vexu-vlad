@@ -108,6 +108,6 @@ export async function login(req, res){
     }
   }
   catch (err) {
-    res.status(400).json({ error: 'Invalid credentials' });
+    res.status(500).json({ error: 'Server error' });
   }
 }
