@@ -3,6 +3,7 @@ import session from 'express-session';
 
 import pool from './db.js';
 import authRoutes from './routes/auth.js';
+import emailRoutes from './routes/email.js';
 
 import bodyParser from "body-parser";
 
@@ -42,5 +43,17 @@ app.post('/login', (request, response)=> {
 });
 
 app.use('/auth', authRoutes);
+
+app.use('/email', emailRoutes);
+
+app.get('/email', (req, res) => {
+  res.send("<html><body><form method=\"POST\" action=\"/email/send\"><input name=\"to\" /><input type=\"submit\" /></form></html>");
+}); 
+
+app.use('/', emailRoutes)
+app.get('/reset-password', (req, res) => {
+  const tokenFromEmail = req.query.token;
+  res.send(`<html><body><form method="POST" action="/reset-password"><h3>Reset Your Password</h3><input type="hidden" name="token" value="${tokenFromEmail}" /><label>New Password:</label><input type="password" name="newPassword" required /><input type="submit" value="Update Password" /></form></body></html>`);
+  });
 
 export default app;
