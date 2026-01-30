@@ -32,6 +32,7 @@
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "nodemailer": "^7.0.13",
+    "jquery": "^4.0.0",
     "pg": "^8.17.2",
     "sequelize": "^6.37.7",
     "twig": "^1.17.1"
