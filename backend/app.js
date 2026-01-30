@@ -4,6 +4,9 @@ import session from 'express-session';
 import pool from './db.js';
 import authRoutes from './routes/auth.js';
 import emailRoutes from './routes/email.js';
+import Twig from "twig";
+
+const __dirname = import.meta.dirname;
 
 import bodyParser from "body-parser";
 
@@ -17,6 +20,20 @@ app.use(session({
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.set("twig options", {
+  allowAsync: true,
+  strict_varibles: false
+})
+
+app.use("/vendor", express.static(`${__dirname}/../node_modules`))
+ 
+console.log(__dirname);
+
+app.get('/', (req, resp) => {
+  resp.render("home.twig")
+})
+
 
 app.get('/health', async (req, res) => {
   try {
