@@ -11,22 +11,16 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
-<<<<<<< HEAD
       SESSION_SECRET: ${SESSION_SECRET}
       COOKIE_MAX_AGE: ${COOKIE_MAX_AGE}
-=======
->>>>>>> 4002d61 (chore: Added Docker Compose File)
     command: ["sh", "-c", "npm install && node backend/server.js"]
     ports:
       - "8080:80"
 
   db:
     image: postgres:18
-<<<<<<< HEAD
     ports:
       - "5432:5432"
-=======
->>>>>>> 4002d61 (chore: Added Docker Compose File)
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
