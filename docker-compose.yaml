@@ -11,12 +11,16 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
+      SESSION_SECRET: ${SESSION_SECRET}
+      COOKIE_MAX_AGE: ${COOKIE_MAX_AGE}
     command: ["sh", "-c", "npm install && node backend/server.js"]
     ports:
       - "8080:80"
 
   db:
     image: postgres:18
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
